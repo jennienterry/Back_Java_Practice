@@ -1,19 +1,19 @@
 package JavaStudy;
 
 public class Game {
-	public static final int MAX_X = 20;
+	public static final int MAX_X = 20; //맵 크기 / 값 안바뀌는거라서 final, 틀 안벗어나도록 static + 공유하기 위해서
 	public static final int MAX_Y = 10;
-	private char map [][] = new char [MAX_Y][MAX_X];
+	private char map [][] = new char [MAX_Y][MAX_X]; // [열] [행]
 	private GameObject [] m = new GameObject[2];
-	int state; // 0: 게임 중, 1: Monster가 winner, 2:Human이 winner
 	
 	public Game() {
-		for(int i=0; i<MAX_Y; i++) 
-			for(int j=0; j<MAX_X; j++)
-				map[i][j] = '-';
-		m[0] = new Bear(0, 0, 1);
-		m[1] = new Fish(5, 5, 2);
-		state = 0; // 게임 중
+		for(int i=0; i<MAX_Y; i++) { // 중괄호가 없다는 것은 하나만 반복
+			for(int j=0; j<MAX_X; j++) {
+				map[i][j] = '-'; // ;전까지만 반복
+			}
+		}
+		m[0] = new Bear(0, 0, 1); // 객체화 
+		m[1] = new Fish(5, 5, 2); // 시작할 때 bear는 0, 0에서 시작, 한칸씩 움직임 / fish는 5,5에서 시작, 두칸씩 움직임
 	}
 	public void run() {
 		System.out.println("** Bear의 Fish 먹기 게임을 시작합니다.**");;
@@ -21,9 +21,9 @@ public class Game {
 		update(); // 초기 좌표에 따른 맵 설정
 		draw(); // 초기 게임 맵을 보여줌
 
-		while(!doesEnd()) {
+		while(!doesEnd()) { // false면 계속 돌아가고, true면 잡힌거
 			clear(); // 현재의 맵 지움
-			for(int i=0; i<m.length; i++) 
+			for(int i=0; i<m.length; i++) // 0은 bear, 1은 fish인데 먹었을 때 덮어쓰기 하려고 fish가 1
 				m[i].move();
 			update(); // 움직인 후 좌표 변경에 따른 맵 갱신
 			draw(); // 맵 그리기
@@ -47,7 +47,7 @@ public class Game {
 		}
 	}
 	private boolean doesEnd() {
-		if(m[0].collide(m[1])) {// Bear ate Fish
+		if(m[0].collide(m[1])) { // Bear ate Fish / 겹치지 않으면 계속 진행
 			return true;
 		}
 		return false;
