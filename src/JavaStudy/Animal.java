@@ -8,7 +8,7 @@ public class Animal {
     private String aColor;
     private String aCharacter;
     private String aHobby;
-    float aFat = 0;
+    private float aFat = 0;
 
     
     Animal (String aName, String aType, String aColor, String aCharacter, String aHobby){
@@ -57,27 +57,27 @@ public class Animal {
 	};
     
 	String eating(){
-		aFat++;
-		if(aFat>0) {
-			aFat=0;
+		this.aFat += 2;
+		if(this.aFat<0) {
+			this.aFat=0;
 		}
-		return String.format("%s : 냠냠냠~ 맛있땅! ^^ %s", this.getaName(),this.getaCharacter());
+		return String.format("%s : 냠냠냠~ 맛있땅! ^^ %s\n <알림> %s가 2kg 쪘어요~!\n <알림> 지금까지 %.1fkg 쪘어요~!", this.aName,this.aCharacter,this.aName,this.aFat);
 	}
     
 	String sleeping() {
-		aFat -= 0.5;
-		if(aFat>0) {
-			aFat=0;
+		this.aFat -= 0.5;
+		if(this.aFat<0) {
+			this.aFat=0;
 		}
-		return String.format("%s : 쿨쿨~zZ  %s", this.getaName(),this.getaCharacter());
+		return String.format("%s : 쿨쿨~zZ  %s\n <알림> %s이가 0.5kg 빠졌어요~! \n <알림> 지금까지 %.1fkg 쪘어요~!", this.aName,this.aCharacter,this.aName,this.aFat);
 	}
 	
 	String pooping() {
-		aFat -= 0.5;
-		if(aFat>0) {
-			aFat=0;
+		this.aFat -= 0.5;
+		if(this.aFat<0) {
+			this.aFat=0;
 		}
-		return String.format("%s : 끄읍... ><;;; 아이~ 시원해~^ㅇ^~ ☆ %s", this.getaName(),this.getaCharacter());
+		return String.format("%s : 끄읍... ><;;; 아이~ 시원해~^ㅇ^~ ☆ %s\n<알림> %s이가 0.5kg 빠졌어요~! \n <알림> 지금까지 %.1fkg 쪘어요~!", this.aName,this.aCharacter,this.aName,this.aFat);
 		
 	}
 	
@@ -91,11 +91,10 @@ public class Animal {
 	}
 	
 	 String hobby() {
-		aFat--;
-		if(aFat<0) {
-		aFat =0;}
-		return String.format(Animal.hobbing());
+		this.aFat--;
+		if(this.aFat<0) {
+		this.aFat =0;}
+	return String.format("%s : %s \n <알림> %s이가 1kg 빠졌어요~!\n <알림> 지금까지 %.1fkg 쪘어요~!",this.aName,this.hobbing(),this.aName,this.aFat);
 	}
-	
-	 
+
 }
